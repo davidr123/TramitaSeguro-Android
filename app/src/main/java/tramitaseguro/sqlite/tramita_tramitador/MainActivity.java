@@ -2,7 +2,6 @@ package tramitaseguro.sqlite.tramita_tramitador;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -40,8 +39,8 @@ cosumirSerVicioPost();
                 int pos= email.indexOf("@");
                 String usuario=email.substring(0, pos);
                 Toast.makeText(MainActivity.this, "BIENVENIDO  : " + editTextemail.getText(), Toast.LENGTH_LONG).show();
-                Intent usuariomail= new Intent(getApplication(), Bienvenido.class);
-                usuariomail.putExtra(UsuarioLogin.usuariologueado, usuario);
+                Intent usuariomail= new Intent(getApplication(), Bievenido.class);
+                usuariomail.putExtra(Bievenido.usuariologueado, usuario);
                 startActivity(usuariomail);
 
             }

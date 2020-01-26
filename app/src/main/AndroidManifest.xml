@@ -5,7 +5,6 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -14,8 +13,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".UsuarioLogin"></activity>
-        <activity android:name=".Bienvenido" />
+        <activity android:name=".Transito"></activity>
+        <activity android:name=".TramitesTransito" />
+        <activity android:name=".TramitesOtros" />
+        <activity android:name=".TramitesNotariales" />
+        <activity android:name=".Bievenido" />
         <activity android:name=".Registro" />
         <activity android:name=".MainActivity">
             <intent-filter>

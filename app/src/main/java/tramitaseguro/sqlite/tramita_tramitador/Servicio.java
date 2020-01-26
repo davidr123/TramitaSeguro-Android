@@ -132,7 +132,7 @@ public class Servicio extends AsyncTask<Void, Void, String> {
         super.onPostExecute(e);
     progressDialog.dismiss();
         resultadoapi=e;
-        Toast.makeText(httpContext, resultadoapi, Toast.LENGTH_LONG).show();
+        //Toast.makeText(httpContext, resultadoapi, Toast.LENGTH_LONG).show();
     }
 
     private String getPostDataString(JSONObject params) throws Exception {
