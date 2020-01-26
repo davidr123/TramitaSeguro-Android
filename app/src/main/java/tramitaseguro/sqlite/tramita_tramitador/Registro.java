@@ -2,15 +2,18 @@ package tramitaseguro.sqlite.tramita_tramitador;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 
 public class Registro extends AppCompatActivity {
 
  EditText editname, editpassword, ditphone;
+    String email;
 
  EditText editmail;
     private Button registrar, btnlogin;
@@ -24,13 +27,17 @@ public class Registro extends AppCompatActivity {
 
      editmail=(EditText) findViewById(R.id.editemail);
           editpassword= (EditText) findViewById(R.id.editpassword);
-        registrar= (Button) findViewById(R.id.buttonregistrar);
+        registrar= (Button) findViewById(R.id.buttonregistrarre);
 
 
         registrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 cosumirSerVicioPost();
+
+                Intent usuariomail= new Intent(getApplication(), MainActivity.class);
+
+                startActivity(usuariomail);
 
             }
         });
