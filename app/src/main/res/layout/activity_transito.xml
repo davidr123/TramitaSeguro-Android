@@ -4,15 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TramitesTransito">
+    tools:context=".TramitesTransito"
+    android:background="@drawable/fondo"
+    >
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:text="Actividad trámites notarailes"
-        android:layout_height="wrap_content"
-        android:textSize="24sp"
-        android:layout_centerInParent="true"
-        ></TextView>
+    <ListView
+        android:layout_marginTop="300dp"
+        android:id="@+id/listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
 
 </RelativeLayout>

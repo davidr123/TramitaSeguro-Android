@@ -4,11 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class TramitesNotariales extends AppCompatActivity {
+public class EstudioJuridico extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tramites_notariales);
+        setContentView(R.layout.activity_estudio_juridico);
     }
 }

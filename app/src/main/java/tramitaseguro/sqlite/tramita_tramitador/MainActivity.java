@@ -41,6 +41,7 @@ cosumirSerVicioPost();
                 Toast.makeText(MainActivity.this, "BIENVENIDO  : " + editTextemail.getText(), Toast.LENGTH_LONG).show();
                 Intent usuariomail= new Intent(getApplication(), Bievenido.class);
                 usuariomail.putExtra(Bievenido.usuariologueado, usuario);
+
                 startActivity(usuariomail);
 
             }

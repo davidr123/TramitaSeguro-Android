@@ -13,10 +13,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Transito"></activity>
+        <activity android:name=".Tramiteotros"></activity>
+        <activity android:name=".EstudioJuridico" />
+        <activity android:name=".Transito" />
         <activity android:name=".TramitesTransito" />
-        <activity android:name=".TramitesOtros" />
-        <activity android:name=".TramitesNotariales" />
         <activity android:name=".Bievenido" />
         <activity android:name=".Registro" />
         <activity android:name=".MainActivity">

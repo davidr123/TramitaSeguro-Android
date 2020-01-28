@@ -4,17 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TramitesTransito">
-
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="Actividad trámites notarailes"
-        android:textSize="24sp"
-
-        tools:ignore="MissingConstraints"></TextView>
+    tools:context=".EstudioJuridico">
 
 </androidx.constraintlayout.widget.ConstraintLayout>
