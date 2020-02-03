@@ -2,10 +2,12 @@ package tramitaseguro.sqlite.tramita_tramitador;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -21,6 +23,8 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.Iterator;
 
+import tramitaseguro.sqlite.tramita_tramitador.objetos.Tramites;
+
 public class Servicio extends AsyncTask<Void, Void, String> {
 
     private ProgressDialog progressDialog;
@@ -32,7 +36,7 @@ public class Servicio extends AsyncTask<Void, Void, String> {
     public String name="";
     public String phonenumber="";
     //Constructor
-
+public  String mensaje;
 
     public Servicio(Context context,  String linkAPI,   String email,  String password) {
         this.httpContext = context;
@@ -56,14 +60,20 @@ public class Servicio extends AsyncTask<Void, Void, String> {
         String result = null;
         String wsURL= linkrequestAPI;
         URL url= null;
+        HttpURLConnection urlConnection=null;
 
             try {
 
                 //se crea conocexionde al api
                 url= new URL(wsURL);
-                HttpURLConnection urlConnection=(HttpURLConnection) url.openConnection();
+                 urlConnection=(HttpURLConnection) url.openConnection();
                 //crear json para enviar post
+
+
                 JSONObject parametrosPost= new JSONObject();
+
+
+
                // parametrosPost.put("name", name);
                 parametrosPost.put("email", email);
               // parametrosPost.put("numberphone", phonenumber); //   parametrosPost.put("password", "123");
@@ -71,7 +81,7 @@ public class Servicio extends AsyncTask<Void, Void, String> {
 
 
 
-                Log.i("sss", name);
+
 
 
                 //DEFINIR PARAMERTRSO DE CONEXION
@@ -89,41 +99,64 @@ public class Servicio extends AsyncTask<Void, Void, String> {
                 writer.flush();
                 writer.close();
                 os.close();
-
-                int responseCode= urlConnection.getResponseCode(); //COnexion OK?
-                Log.i("response",responseCode+"");
-                if(responseCode== HttpURLConnection.HTTP_OK){
-                    BufferedReader in = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
-
-                    StringBuffer sb= new StringBuffer("");
-                    String linea="";
-                    while ((linea= in.readLine())!= null){
-                        sb.append(linea);
-                        break;
-
-                    }
-
-                    in.close();
-                    result=sb.toString();
-                    Log.i("response",result+"");
-
-                }else{
-                    result= new String("Error:  "+ responseCode);
+                int code = urlConnection.getResponseCode();
+                if (code !=  200) {
+                    throw new IOException("Invalid response from server: " + code);
                 }
 
+                StringBuffer response= new StringBuffer();
+                BufferedReader rd = new BufferedReader(new InputStreamReader(
+                        urlConnection.getInputStream()));
+                String line;
+                while ((line = rd.readLine()) != null) {
+                    Log.i("data", line);
 
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (JSONException e) {
-                e.printStackTrace();
+
+
+
+                    response.append(line);
+
+                    String input;
+
+                    while((input= rd.readLine())!=null){
+                        response.append(input);
+                    }
+
+
+
+                    String json="";
+                    json= response.toString();
+                    JSONObject jsonObject2 = new JSONObject(json);
+                  mensaje=jsonObject2.getString("message");
+
+
+                    Log.i("mens",mensaje);
+
+                       // Toast.makeText(httpContext, "Bienvenido"+email+"", Toast.LENGTH_SHORT).show();
+                        Intent usuariomail= new Intent(httpContext, Bievenido.class);
+                        usuariomail.putExtra(Bievenido.usuariologueado, email);
+
+                        httpContext.startActivity(usuariomail);
+
+
+
+
+
+
+
+
+
+                }
             } catch (Exception e) {
                 e.printStackTrace();
+            } finally {
+                if (urlConnection != null) {
+                    urlConnection.disconnect();
+                }
             }
 
+        return null;
 
-        return result;
     }
 
 
@@ -132,8 +165,12 @@ public class Servicio extends AsyncTask<Void, Void, String> {
     @Override
     protected void onPostExecute(String e){
         super.onPostExecute(e);
-    progressDialog.dismiss();
+        progressDialog.dismiss();
         resultadoapi=e;
+       // Toast.makeText(httpContext, mensaje, Toast.LENGTH_SHORT).show();
+
+
+
         //Toast.makeText(httpContext, resultadoapi, Toast.LENGTH_LONG).show();
     }
 

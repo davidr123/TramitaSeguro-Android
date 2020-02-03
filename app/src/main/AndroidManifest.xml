@@ -13,8 +13,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Tramiteotros"></activity>
-        <activity android:name=".EstudioJuridico" />
+        <activity android:name=".Notariales"></activity>
+        <activity android:name=".PrincipalProvider" />
+        <activity android:name=".Resultado" />
+        <activity android:name=".Tramiteotros" />
+        <activity android:name=".EstudioJuridicoActivity" />
         <activity android:name=".Transito" />
         <activity android:name=".TramitesTransito" />
         <activity android:name=".Bievenido" />
@@ -26,6 +29,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <provider
+            android:name=".UserProvider"
+            android:authorities="tramitaseguro.sqlite.tramita_tramitador.UserProvider" />
     </application>
 
 </manifest>

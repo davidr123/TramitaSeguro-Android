@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -35,14 +36,14 @@ public class MainActivity extends AppCompatActivity {
         btnlogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-cosumirSerVicioPost();
+                cosumirSerVicioPost();
                 int pos= email.indexOf("@");
                 String usuario=email.substring(0, pos);
-                Toast.makeText(MainActivity.this, "BIENVENIDO  : " + editTextemail.getText(), Toast.LENGTH_LONG).show();
-                Intent usuariomail= new Intent(getApplication(), Bievenido.class);
+             //   Toast.makeText(MainActivity.this, "BIENVENIDO  : " + editTextemail.getText(), Toast.LENGTH_LONG).show();
+                /*Intent usuariomail= new Intent(getApplication(), Bievenido.class);
                 usuariomail.putExtra(Bievenido.usuariologueado, usuario);
 
-                startActivity(usuariomail);
+                startActivity(usuariomail);*/
 
             }
         });
@@ -64,16 +65,17 @@ cosumirSerVicioPost();
     public void cosumirSerVicioPost(){
 
 
-       email= editTextemail.getText().toString();
+        email= editTextemail.getText().toString();
         String password= editTextpassword.getText().toString();
 
 
 
 
+        String url="https://jsonappget.herokuapp.com/register/login";
 
 
-        Servicio servicio= new Servicio(this, "https://jsonappget.herokuapp.com/register/login", email, password);
-        servicio.execute();
+        Servicio servicio= new Servicio(this, url, email, password);
+       servicio.execute();
 
 
 

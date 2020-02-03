@@ -11,6 +11,8 @@ import android.widget.GridLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import tramitaseguro.sqlite.tramita_tramitador.objetos.Tramites;
+
 public class Bievenido extends AppCompatActivity {
 
     public static String usuariologueado;
@@ -42,11 +44,14 @@ setSingleEvent(maingrid);
 
                if(finalit==0){
 
-                   Intent intent= new Intent(Bievenido.this, Transito.class);
-                   startActivity(intent);
+                 Intent intent= new Intent(Bievenido.this, Transito.class);
+
+
+                  startActivity(intent);
+
                }
                else if(finalit==1){
-                   Intent intent= new Intent(Bievenido.this, Tramiteotros.class);
+                   Intent intent= new Intent(Bievenido.this, PrincipalProvider.class);
                    startActivity(intent);
                }
 
