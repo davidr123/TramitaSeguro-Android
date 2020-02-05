@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.USE_FINGERPRINT" />
 
     <application
         android:allowBackup="true"
@@ -13,7 +14,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Notariales"></activity>
+        <activity android:name=".RequisitoPermisosdeSalidaNotarial"></activity>
+        <activity android:name=".RequisitosCertificacioDocumento" />
+        <activity android:name=".InformacionEstudioOramas" />
+        <activity android:name=".InformacionEstudioNotaPicay" />
+        <activity android:name=".InformacionEstudioNotaEstimaped" />
+        <activity android:name=".EstudioJuridicoNotarial" />
+        <activity android:name=".Notariales" />
+        <activity android:name=".Sensor" />
+        <activity android:name=".RequisitoBajaVehiculo" />
+        <activity android:name=".RequisitoDuplicadoMatricula" />
+        <activity android:name=".InformacionEstudio" />
         <activity android:name=".PrincipalProvider" />
         <activity android:name=".Resultado" />
         <activity android:name=".Tramiteotros" />

@@ -2,6 +2,7 @@ package tramitaseguro.sqlite.tramita_tramitador;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
@@ -72,6 +73,9 @@ public class ServicioRegistro extends AsyncTask<Void, Void, String> {
             Log.i("sss", name);
 
 
+
+
+
             //DEFINIR PARAMERTRSO DE CONEXION
             urlConnection.setReadTimeout(15000);
             urlConnection.setConnectTimeout(15000);
@@ -101,6 +105,10 @@ public class ServicioRegistro extends AsyncTask<Void, Void, String> {
 
                 }
 
+                Intent usuariomail= new Intent(httpContext, Bievenido.class);
+
+                httpContext.startActivity(usuariomail);
+
                 in.close();
                 result=sb.toString();
                 Log.i("response",result+"");
@@ -108,6 +116,8 @@ public class ServicioRegistro extends AsyncTask<Void, Void, String> {
             }else{
                 result= new String("Error:  "+ responseCode);
             }
+
+
 
 
         } catch (MalformedURLException e) {

@@ -71,6 +71,20 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.81" />
 
+    <Button
+        android:id="@+id/buttonhuella"
+        android:layout_width="117dp"
+        android:layout_height="45dp"
+        android:background="#004BA0"
+        android:text="huella"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.462"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.927" />
+
     <TextView
         android:id="@+id/textViewTramitaseguro"
         android:layout_width="wrap_content"
@@ -123,19 +137,5 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.638"
         app:srcCompat="@drawable/iconocontrasenatramita" />
-
-    <TextView
-        android:id="@+id/olvidocontrasena"
-        android:layout_width="202dp"
-        android:layout_height="41dp"
-        android:text="Olvídaste tú contraseña?"
-        android:textColor="#FFFFFF"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.923"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.746" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

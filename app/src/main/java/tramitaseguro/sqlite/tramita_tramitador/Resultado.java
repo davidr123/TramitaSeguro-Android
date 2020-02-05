@@ -21,7 +21,8 @@ public class Resultado extends AppCompatActivity {
         if(cursor.moveToFirst()) {
             StringBuilder strBuild=new StringBuilder();
             while (!cursor.isAfterLast()) {
-                strBuild.append("\n"+cursor.getString(cursor.getColumnIndex("id"))+ "-"+ cursor.getString(cursor.getColumnIndex("name")));
+                strBuild.append("\n"+cursor.getString(cursor.getColumnIndex("id"))+ "-"+ cursor.getString(cursor.getColumnIndex("name"))
+                        + "-"+ cursor.getString(cursor.getColumnIndex("email"))+ "-"+ cursor.getString(cursor.getColumnIndex("password")));
                 cursor.moveToNext();
             }
             resultView.setText(strBuild);

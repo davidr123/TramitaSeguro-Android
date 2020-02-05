@@ -3,6 +3,7 @@ package tramitaseguro.sqlite.tramita_tramitador;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
@@ -32,6 +33,7 @@ import tramitaseguro.sqlite.tramita_tramitador.objetos.Tramites;
 public class Transito extends AppCompatActivity {
 
 public ListView listView;
+    private ProgressDialog progressDialog;
 
 public TextView texttramites;
 Button btnEje;
@@ -56,7 +58,7 @@ ArrayList<Tramites> listTramites=new ArrayList<Tramites>();
                 Tramites  item = (Tramites) adpater.getItem(position);
 
                 Intent intent = new Intent(Transito.this, EstudioJuridicoActivity.class);
-                isConnectedToInternet();
+                //isConnectedToInternet();
                 intent.putExtra("tramitesxestudio", item.getId() );
                 startActivity(intent);
             }
@@ -67,21 +69,6 @@ ArrayList<Tramites> listTramites=new ArrayList<Tramites>();
 
     }
 
-    public boolean isConnectedToInternet(){
-        ConnectivityManager connectivity = (ConnectivityManager)getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
-        if (connectivity != null)
-        {
-            NetworkInfo[] info = connectivity.getAllNetworkInfo();
-            if (info != null)
-                for (int i = 0; i < info.length; i++)
-                    if (info[i].getState() == NetworkInfo.State.CONNECTED)
-                    {
-                        return true;
-                    }
-
-        }
-        return false;
-    }
 
 
         public  class ServicioJson extends AsyncTask<String, String, String> {

@@ -51,14 +51,11 @@ setSingleEvent(maingrid);
 
                }
                else if(finalit==1){
-                   Intent intent= new Intent(Bievenido.this, PrincipalProvider.class);
+                   Intent intent= new Intent(Bievenido.this, Notariales.class);
                    startActivity(intent);
                }
 
-               else if(finalit==2){
-                   Intent intent= new Intent(Bievenido.this, Transito.class);
-                   startActivity(intent);
-               }
+
 
                
                else{

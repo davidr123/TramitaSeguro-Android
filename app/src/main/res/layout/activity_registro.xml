@@ -96,12 +96,28 @@
         android:background="#212121"
         android:text="REGISTRAR"
         android:textColor="#FFFFFF"
+        android:onClick="onClickAddDetails"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.566"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.854" />
+
+    <Button
+        android:id="@+id/buttonguradarprovider"
+        android:layout_width="102dp"
+        android:layout_height="42dp"
+        android:background="#212121"
+        android:text="provider"
+
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.566"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.943" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

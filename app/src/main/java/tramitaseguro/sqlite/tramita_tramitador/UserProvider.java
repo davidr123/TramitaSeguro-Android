@@ -21,8 +21,9 @@ public class UserProvider extends ContentProvider {
     static final Uri CONTENT_URI = Uri.parse(URL);
 
     static final String id = "id";
-    static final String name = "name";
-    static final String apellido = "apellido";
+    static String name = "name";
+    static final String email = "email";
+    static final String password = "password";
 
     static final int uriCode = 1;
     static final UriMatcher uriMatcher;
@@ -115,10 +116,21 @@ public class UserProvider extends ContentProvider {
     private SQLiteDatabase db;
     static final String DATABASE_NAME = "EmpDB";
     static final String TABLE_NAME = "Employees";
-    static final int DATABASE_VERSION = 1;
+    static final int DATABASE_VERSION = 2;
     static final String CREATE_DB_TABLE = " CREATE TABLE " + TABLE_NAME
             + " (id INTEGER PRIMARY KEY AUTOINCREMENT, "
-            + " name TEXT NOT NULL);";
+            + " name TEXT NOT NULL,"
+            + "email TEXT NOT NULL,"
+            + "password TEXT NOT NULL);";
+
+    public long update(String name, String email, String password, ContentValues contentValues, String s, String[] strings) {
+        this.name= name;
+        this.name= email;
+        this.name= password;
+
+        return Long.parseLong( null );
+    }
+
 
     private static class DatabaseHelper extends SQLiteOpenHelper {
         DatabaseHelper(Context context) {

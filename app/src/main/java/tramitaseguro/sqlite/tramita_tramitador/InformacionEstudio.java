@@ -6,9 +6,9 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.renderscript.Sampler;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -30,12 +30,12 @@ import java.util.Iterator;
 
 import tramitaseguro.sqlite.tramita_tramitador.adapter.AdapterEstudioJuridico;
 import tramitaseguro.sqlite.tramita_tramitador.objetos.TramiteEstudioJuridico;
-import tramitaseguro.sqlite.tramita_tramitador.objetos.TramitesSingle;
 
-public class EstudioJuridicoActivity extends AppCompatActivity {
+public class InformacionEstudio extends AppCompatActivity {
     public ListView listView;
 
-    public TextView texttramites;
+    private  Button requisitos;
+    public TextView texttramites, direccion;
     public  String valor;
     Button btnEje;
     AdapterEstudioJuridico adpater;
@@ -43,51 +43,27 @@ public class EstudioJuridicoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_estudio_juridico);
+        setContentView(R.layout.activity_informacion_estudio);
+        direccion= (TextView) findViewById(R.id.textdireccion);
+requisitos= (Button) findViewById(R.id.buttonrequisitos);
 
+requisitos.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        Intent intent = new Intent(InformacionEstudio.this, RequisitoDuplicadoMatricula.class);
 
-
-       // Intent intent = new Intent();
-         valor = getIntent().getStringExtra("tramitesxestudio");
-        TramitesSingle tramitesSingle= TramitesSingle.getInstance();
-        tramitesSingle.id=valor;
-        Log.i("valor",valor);
-
-        listView=findViewById(R.id.listaestudios);
-        adpater = new AdapterEstudioJuridico(getApplicationContext(), listTramites);
-        listView.setAdapter(adpater);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-
-                TramiteEstudioJuridico estudios =(TramiteEstudioJuridico) adpater.getItem(position);
-                Intent intent = new Intent(EstudioJuridicoActivity.this, InformacionEstudio.class);
-                intent.putExtra("estudios", estudios.getId() );
-                startActivity(intent);
-            }
-        });
-        new ServicioJson().execute();
-
-      //  new ServicioJson().execute();
-        /*
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-            @Override
-            public void onItemClick(AdapterView<?>adapter, View v, int position){
-                Tramites  item = (Tramites) adpater.getItem(position);
-
-                Intent intent = new Intent(Transito.this,TramiteEstudioJuridico.class);
-                intent.putExtra("tramitesxestudio", item.getId() );
-                startActivity(intent);
-            }
-        });
-*/
+       // intent.putExtra("rquisitoduplicadomatricula", estudios.getId() );
+        startActivity(intent);
     }
+});
+        valor = getIntent().getStringExtra("estudios");
+         Log.i("valor",valor);
 
-
-
-
+        //listView=findViewById(R.id.listaestudios);
+        //  adpater = new AdapterEstudioJuridico(getApplicationContext(), listTramites);
+        //  listView.setAdapter(adpater);
+        new ServicioJson().execute();
+    }
     public  class ServicioJson extends AsyncTask<String, String, String> {
 
 
@@ -173,7 +149,7 @@ public class EstudioJuridicoActivity extends AppCompatActivity {
                     JSONObject jsonObject2 = new JSONObject(json);
                     JSONArray jsonArray= null;
                     // jsonObject2= jsonObject2.optJSONObject("tramites");
-                    String content = jsonObject2.optString("nombre");
+                    String content = jsonObject2.optString("direccion");
 
                     jsonArray= jsonObject2.getJSONArray("tramites");
                     Log.i("json",jsonArray.toString());
@@ -189,22 +165,22 @@ public class EstudioJuridicoActivity extends AppCompatActivity {
 
                         Log.i("jsonObj",jsonObject.toString());
 
-                        men += " " + jsonObject.getString("nombre");
+                        men += " " + jsonObject.getString("direccion");
                         DT += " " + jsonObject.getString("id");
                         TramiteEstudioJuridico tramites= new TramiteEstudioJuridico();
                         tramites.setId(DT);
-                        tramites.setNombre(men);
-                        listTramites.add(tramites);
+
+                        tramites.setDireccion(men);
+                        //listTramites.add(tramites);
 
 
 
-
+                        direccion.setText(tramites.getDireccion());
 
                     }
 
 
 
-                    adpater.notifyDataSetChanged();
 
 
 
@@ -248,7 +224,5 @@ public class EstudioJuridicoActivity extends AppCompatActivity {
         }
         return result.toString();
     }
-
-
 
 }
