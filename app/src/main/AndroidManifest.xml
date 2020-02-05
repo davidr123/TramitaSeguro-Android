@@ -14,7 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".RequisitoPermisosdeSalidaNotarial"></activity>
+        <activity android:name=".syncronizacion.Consulta"></activity>
+        <activity android:name=".RequisitoPermisosdeSalidaNotarial" />
         <activity android:name=".RequisitosCertificacioDocumento" />
         <activity android:name=".InformacionEstudioOramas" />
         <activity android:name=".InformacionEstudioNotaPicay" />
@@ -36,6 +37,7 @@
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>

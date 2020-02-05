@@ -2,7 +2,9 @@ package tramitaseguro.sqlite.tramita_tramitador;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -10,6 +12,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import tramitaseguro.sqlite.tramita_tramitador.tareas.TareaInternet;
 
 import static tramitaseguro.sqlite.tramita_tramitador.UserProvider.password;
 
@@ -31,8 +35,14 @@ public class MainActivity extends AppCompatActivity {
         btnlogin= (Button) findViewById(R.id.buttonloguin);
 
 
-        registrar= (Button) findViewById(R.id.buttonregistrar);
+        registrar= (Button) findViewById(R.id.buttonregistrarmain);
         huella= (Button) findViewById(R.id.buttonhuella);
+
+        SharedPreferences preferences=getSharedPreferences( "datos", Context.MODE_PRIVATE );
+        editTextemail.setText( preferences.getString( "mail" , "") );
+        editTextpassword.setText( preferences.getString( "password", "" ) );
+        TareaInternet tareaInternet=new TareaInternet(getApplicationContext());
+        tareaInternet.execute();
 
         huella.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,8 +57,9 @@ public class MainActivity extends AppCompatActivity {
         btnlogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cosumirSerVicioPost();
 
+                cosumirSerVicioPost();
+guardar();
 
               //  int pos= email.indexOf("@");
                // String usuario=email.substring(0, pos);
@@ -73,6 +84,14 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public  void guardar(){
+        SharedPreferences preferences = getSharedPreferences( "datos", Context.MODE_PRIVATE );
+        SharedPreferences.Editor Obj_editor= preferences.edit();
+        Obj_editor.putString( "mail", editTextemail.getText().toString() );
+        Obj_editor.putString( "password", editTextpassword.getText().toString() );
+        Obj_editor.commit();
+
+    }
 
 
     public void cosumirSerVicioPost(){
